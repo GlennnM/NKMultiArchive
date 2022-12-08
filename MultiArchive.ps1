@@ -91,6 +91,14 @@ try {
 		$N.Dispose();
 	}
 }
+"NK MultiArchive Installer by glenn m"
+	"The following mods will be installed:"
+	"Ninja Kiwi Multi-Instance Archive"
+	"Approx data size: 47.4 MB"
+	"==============================="
+
+	$X = Read-Host "Please ensure all Ninja Kiwi Archive windows(INCLUDING THE LAUNCHER!!!) are closed, then press ENTER to begin installation..."
+	
 if ($IsWindows -or $ENV:OS) {
     if (Test-Path -Path $win_steam) {
         "Located windows/steam installation(probably)"
@@ -115,6 +123,5 @@ if ($IsWindows -or $ENV:OS) {
         DownloadThenExtract -cache $mac_standalone -zippath $URL_STANDALONE -downloadpath $mac_standalone'/install.zip' -FULL_SIZE $SIZE_STANDALONE
 
     }
-	$X = Read-Host "Press enter to exit..."
 }
-Test-Path -Path $win_steam
+$X = Read-Host "Press enter to exit..."
