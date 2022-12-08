@@ -8,6 +8,7 @@ $URL_STANDALONE="https://github.com/GlennnM/NKMultiArchive/releases/download/v1.
 $SIZE_STEAM = 49746313
 $SIZE_STANDALONE = 49746102
 $filename="app.asar"
+$global:count_=0
 function DownloadThenExtract([string]$cache,[string]$zippath,[string]$downloadpath,[int]$FULL_SIZE){
 [int]$FULL_MB = $FULL_SIZE / 0.1MB
 $FULL_MB_FLOAT = $FULL_MB / 10
@@ -18,16 +19,19 @@ try {
 		$E = $N.DownloadFileTaskAsync($zippath,$downloadpath)
 		while (!($E.IsCompleted)) {
 			Start-Sleep -Seconds 1
-				$size = (Get-Item -Path $downloadpath).Length
-				if ($size -eq 0) {
-					continue
-				}
-				[int]$percent = ($size / $FULL_SIZE * 1000)
-				[int]$mb = $size / 0.1MB
-				$percent_float = $percent / 10
-				$mb_float = $mb / 10
-				#Write-Progress -Activity "Downloading app.asar:" -Status "$percent_float% complete.." -PercentComplete $percent_float
-				Write-Host -NoNewline "`rDownloading $filename ... $percent_float% ($mb_float MB/$FULL_MB_FLOAT MB)    "
+                if(Test-Path -Path $downloadpath){
+				    $size = (Get-Item -Path $downloadpath).Length
+				    if ($size -eq 0) {
+					    continue
+				    }
+				    [int]$percent = ($size / $FULL_SIZE * 1000)
+				    [int]$mb = $size / 0.1MB
+				    $percent_float = $percent / 10
+				    $mb_float = $mb / 10
+				    #Write-Progress -Activity "Downloading app.asar:" -Status "$percent_float% complete.." -PercentComplete $percent_float
+				    Write-Host -NoNewline "`rDownloading $filename ... $percent_float% ($mb_float MB/$FULL_MB_FLOAT MB)    "
+                
+                }
 			
 		}
 		if ($size -lt $FULL_SIZE) {
@@ -75,13 +79,14 @@ try {
 		Remove-Item "$cache/install.zip"
 
 		if (Test-Path -Path $cache'/app.asar') {
+            $global:count_++
 
 			"Mod installation for NK Archive at "+$cache+" probably succeeded!!"
 		} else {
 			"Mod installation failed."
 		}
 	} catch {
-		$Q = Read-Host "One or more files failed to download, exiting."
+		"One or more files failed to download"
 	} finally {
 		try {
 			$N.CancelAsync();
@@ -98,7 +103,7 @@ try {
 	"==============================="
 
 	$X = Read-Host "Please ensure all Ninja Kiwi Archive windows(INCLUDING THE LAUNCHER!!!) are closed, then press ENTER to begin installation..."
-	
+
 if ($IsWindows -or $ENV:OS) {
     if (Test-Path -Path $win_steam) {
         "Located windows/steam installation(probably)"
@@ -110,7 +115,13 @@ if ($IsWindows -or $ENV:OS) {
     }
     if (Test-Path -Path $win_standalone2) {
         "Located windows/standalone(All Users) installation(probably)"
+        "If this fails, try running powershell as admin"
+        "(or, if one of the previous steps succeeded, just use that archive instead)"
+        try{
         DownloadThenExtract -cache $win_standalone2 -zippath $URL_STANDALONE -downloadpath $win_standalone2'/install.zip' -FULL_SIZE $SIZE_STANDALONE
+        }catch{
+
+        }
     }
 }else{
     if(Test-Path -Path $mac_steam){
@@ -124,4 +135,5 @@ if ($IsWindows -or $ENV:OS) {
 
     }
 }
+"Successful installations: "+$global:count_
 $X = Read-Host "Press enter to exit..."
