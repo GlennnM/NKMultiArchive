@@ -8,4 +8,6 @@ Since all the script does is check for common installation directories and extra
 3. replace the app.asar there with the one from inside the zip file<br>
 
 <h>**Uninstalling:**</h><br>
-To revert the mod, reinstall the Ninja Kiwi Archive, or verify integrity of game files on steam.<br> If you saved the old app.asar you can also just replace it with that
+To revert the mod, reinstall the Ninja Kiwi Archive, or verify integrity of game files on steam.<br> If you saved the old app.asar you can also just replace it with that<br>
+<h>**Contact:**</h><br>
+If you have questions or concerns feel free to message me on discord: Glenn M#9606
