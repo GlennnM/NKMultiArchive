@@ -3,10 +3,10 @@ $win_standalone1=${env:LocalAppData}+"\Programs\Ninja Kiwi Archive\resources"
 $win_standalone2=${env:ProgramFiles}+"\Ninja Kiwi\Ninja Kiwi Archive\resources"
 $mac_steam=$HOME +"/Library/Application Support/Steam/steamapps/common/Ninja Kiwi Archive/resources"
 $mac_standalone="/Applications/Ninja Kiwi Archive.app/Contents/Resources"
-$URL_STEAM="https://github.com/GlennnM/NKMultiArchive/releases/download/v1.0/app_steam.zip"
-$URL_STANDALONE="https://github.com/GlennnM/NKMultiArchive/releases/download/v1.0/app_standalone.zip"
-$SIZE_STEAM = 49746313
-$SIZE_STANDALONE = 49746102
+$URL_STEAM="https://github.com/GlennnM/NKMultiArchive/releases/download/v1.1/app_steam.zip"
+$URL_STANDALONE="https://github.com/GlennnM/NKMultiArchive/releases/download/v1.1/app_standalone.zip"
+$SIZE_STEAM = 49746465
+$SIZE_STANDALONE = 49746336
 $filename="app.asar"
 $global:count_=0
 function DownloadThenExtract([string]$cache,[string]$zippath,[string]$downloadpath,[int]$FULL_SIZE){
