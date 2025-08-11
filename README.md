@@ -1,6 +1,7 @@
 # NKMultiArchive
+**UPDATE - Archiving because this functionality is now available in the client from [FlashPrivateServer](https://github.com/GlennnM/FlashPrivateServer).**
 Simple mod for Ninja Kiwi Archive which allows multiple of the same game, from the same launcher.<br>
-2025 update: also allows you to open games marked as 'unplayable' by NK (atm Battles, BMC, Beatstreak3000). Note that BMC is experiencing server outages which currently make it not playable as of May 2025. NK has said they are trying to fix these.<br>
+Also allows you to open games marked as 'unplayable' by NK (atm Battles, BMC, Beatstreak3000). Note that BMC is experiencing server outages which currently make it not playable as of May 2025. NK has said they are trying to fix these.<br>
 <h>**Installing:**</h><br>
 To install, open the newest release page(try <a href=https://github.com/GlennnM/NKMultiArchive/releases/latest>here</a>) and download MultiArchive.ps1, then run the script.<br><br>
 Since all the script does is check for common installation directories and extract an app.asar file there, you can also install manually:<br>
